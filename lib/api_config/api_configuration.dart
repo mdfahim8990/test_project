@@ -1,1 +1,1 @@
-const API_URL = " http://universities.hipolabs.com";
+const API_URL = "http://universities.hipolabs.com";

@@ -9,7 +9,7 @@ class api_service{
 
   Future<ApiResponse> universityInfo() async {
     try {
-      final apiResponse = await _http.get( "/search?country=United+States");
+      final apiResponse = await _http.get( "$apiUrl/search?country=United+States");
       return _processApiResponse(apiResponse);
     } catch (e) {
       d.log("Error::ApiService::createUpdateOrder: ${e.toString()}");
