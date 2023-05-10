@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/pages/university_list.dart';
 void main() {
 
   runApp(const MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const UniversityListPage(),
+      home:  const MyHomePage(title:"Fahim"),
     );
   }
 }

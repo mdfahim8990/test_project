@@ -25,7 +25,7 @@ class _UniversityListPageState extends State<UniversityListPage> {
       ApiResponse response = await _apiService.universityInfo() ;
       if(response.success && response.data !=0){
         var dataList = response.data as List;
-        universityInfo =  dataList.map((el) => University_info_model.fromJson(el)).toList();
+        universityInfo =  dataList.map((el) => University_info_model.fromJson(el[0])).toList();
         //universityInfo.add(dataList);
         d.log("${universityInfo}");
         d.log("${universityInfo.length}");
