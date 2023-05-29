@@ -7,8 +7,10 @@ class ProductViewPage extends StatefulWidget {
   @override
   State<ProductViewPage> createState() => _ProductViewPageState();
 }
- int productQty = 01;
+
+int productQty = 01;
 bool wantBuy = false;
+
 class _ProductViewPageState extends State<ProductViewPage> {
   @override
   Widget build(BuildContext context) {
@@ -55,84 +57,101 @@ class _ProductViewPageState extends State<ProductViewPage> {
                             Positioned(
                               bottom: 5,
                               left: -5,
-                              child:wantBuy?
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20.0),
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 30,
-
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            productQty--;
-                                            if(productQty == 0){
-                                              wantBuy = false;
-                                            }
-                                          });
-                                        },
-                                        style:  ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.zero,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(topLeft: Radius.circular(8),bottomLeft: Radius.circular(8)), // <-- Radius
+                              child: wantBuy
+                                  ? Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 20.0),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 30,
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  productQty--;
+                                                  if (productQty == 0) {
+                                                    wantBuy = false;
+                                                  }
+                                                });
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                padding: EdgeInsets.zero,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(8),
+                                                      bottomLeft:
+                                                          Radius.circular(
+                                                              8)), // <-- Radius
+                                                ),
+                                                backgroundColor: Colors.black87,
+                                                foregroundColor: Colors.white,
+                                              ),
+                                              child: Icon(Icons.remove,
+                                                  color: Colors.white),
+                                            ),
                                           ),
-                                          backgroundColor: Colors.black87,
-                                          foregroundColor: Colors.white,
-                                        ),
-
-                                        child: Icon(Icons.remove,
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 35.0, right: 35.0),
+                                            child: Text(
+                                              "$productQty",
+                                              style: TextStyle(
+                                                  color: Colors.green,
+                                                  fontSize: 16),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 30,
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  productQty++;
+                                                });
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                padding: EdgeInsets.zero,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.only(
+                                                      topRight:
+                                                          Radius.circular(8),
+                                                      bottomRight:
+                                                          Radius.circular(
+                                                              8)), // <-- Radius
+                                                ),
+                                                // padding: EdgeInsets.all(0),
+                                                backgroundColor: Colors.black87,
+                                                // <-- Button color
+                                                foregroundColor: Colors
+                                                    .white, // <-- Splash color
+                                              ),
+                                              child: Icon(Icons.add,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          wantBuy = true;
+                                        });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        //padding:EdgeInsets.zero ,
+                                        shape: const CircleBorder(),
+                                        // padding: EdgeInsets.all(0),
+                                        backgroundColor: Colors.black87,
+                                        foregroundColor:
+                                            Colors.red, // <-- Splash color
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(4),
+                                        child: Icon(Icons.shopping_bag_outlined,
                                             color: Colors.white),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 35.0,right: 35.0),
-                                      child: Text("$productQty",style: TextStyle(color: Colors.green,fontSize: 16),),
-                                    ),
-                                    SizedBox(
-                                      width: 30,
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            productQty++;
-                                          });
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.zero,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(topRight: Radius.circular(8),bottomRight: Radius.circular(8)), // <-- Radius
-                                          ),
-                                          // padding: EdgeInsets.all(0),
-                                          backgroundColor: Colors.black87,
-                                          // <-- Button color
-                                          foregroundColor: Colors.white, // <-- Splash color
-                                        ),
-                                        child: Icon(Icons.add,
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ):
-                              ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    wantBuy = true;
-                                  });
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  //padding:EdgeInsets.zero ,
-                                  shape: const CircleBorder(),
-                                  // padding: EdgeInsets.all(0),
-                                  backgroundColor: Colors.black87,
-                                  foregroundColor: Colors.red, // <-- Splash color
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(4),
-                                  child: Icon(Icons.shopping_bag_outlined,
-                                      color: Colors.white),
-                                ),
-                              ),
                             ),
                             Positioned(
                               top: 10,
@@ -144,7 +163,8 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                   // padding: EdgeInsets.all(0),
                                   backgroundColor: Colors.black87,
                                   // <-- Button color
-                                  foregroundColor: Colors.green, // <-- Splash color
+                                  foregroundColor:
+                                      Colors.green, // <-- Splash color
                                 ),
                                 child: const Padding(
                                   padding: EdgeInsets.all(3),
@@ -180,7 +200,8 @@ class _ProductViewPageState extends State<ProductViewPage> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 4.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: const [
                                     //Text("    "),
                                     SizedBox(
@@ -199,23 +220,26 @@ class _ProductViewPageState extends State<ProductViewPage> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 4.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: const [
                                     SizedBox(
                                       width: 70,
                                       child: Text(
                                         "PRP",
-                                        style:
-                                            TextStyle(fontWeight: FontWeight.bold),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                     Text(
                                       "& 15.5",
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "& 15.5",
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
@@ -223,8 +247,9 @@ class _ProductViewPageState extends State<ProductViewPage> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 4.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children:const [
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: const [
                                     SizedBox(
                                       width: 70,
                                       child: Text(
@@ -236,11 +261,13 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                     ),
                                     Text(
                                       "& 15.5",
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "& 15.5",
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
@@ -248,8 +275,9 @@ class _ProductViewPageState extends State<ProductViewPage> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 4.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children:const [
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: const [
                                     SizedBox(
                                       width: 70,
                                       child: Text(
@@ -261,11 +289,13 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                     ),
                                     Text(
                                       "& 15.5",
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "& 15.5",
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
@@ -277,17 +307,28 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                     Container(
                                       decoration: BoxDecoration(
                                           color: Colors.deepOrangeAccent[100],
-                                          borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5.0))),
                                       child: const Padding(
                                         padding: EdgeInsets.all(2.0),
                                         child: Text(
                                           "10%",
-                                          style: TextStyle(color: Colors.white,fontSize: 16),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 20,),
-                                    Text("Rp 330.000",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500,color: Colors.grey.shade400),)
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      "Rp 330.000",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.grey.shade400),
+                                    )
                                   ],
                                 ),
                               )
@@ -300,7 +341,7 @@ class _ProductViewPageState extends State<ProductViewPage> {
                 ),
               ),
 
-             /* Row(
+              /* Row(
                 children: [
                   ElevatedButton(
                     onPressed: () {
@@ -344,8 +385,134 @@ class _ProductViewPageState extends State<ProductViewPage> {
                   ),
                 ],
               ),*/
+              Card(
+                elevation: 15,
+                shadowColor: Colors.grey,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: width / 2.6,
+                      height: height / 4,
+                      child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            const ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10)),
+                              child: Image(
+                                image: AssetImage('assets/product/prod.jpg'),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            Positioned(
+                              top: 10,
+                              right: -5,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  shape: const CircleBorder(),
+                                  // padding: EdgeInsets.all(0),
+                                  backgroundColor: Colors.black87,
+                                  // <-- Button color
+                                  foregroundColor:
+                                  Colors.green, // <-- Splash color
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(3),
+                                  child: Icon(
+                                    Icons.favorite_border,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                      ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: height/4,
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
 
-
+                          children: [
+                            const Text("Apex Fresh Water King Prawns",style: TextStyle(fontWeight: FontWeight.w700),),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 4.0),
+                              child: Text(
+                                "SKU: 09U52A",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                    color: Colors.grey),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4.0),
+                              child: Text(
+                                "RRP: 300.000",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: Colors.green),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6.0),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepOrangeAccent[100],
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5.0))),
+                                    child:  Padding(
+                                      padding: EdgeInsets.all(2.0),
+                                      child: Text(
+                                        "10%",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Text(
+                                    "Rp 330.000",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey.shade400),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  padding:EdgeInsets.zero,
+                                 // elevation: 3,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0)),
+                                  minimumSize: Size(100, 40), //////// HERE
+                                ),
+                                onPressed: () {},
+                                child: Text('Hey bro'),
+                              ),
+                            )
+                   ]
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ));
