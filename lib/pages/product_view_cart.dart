@@ -395,7 +395,7 @@ class _ProductViewPageState extends State<ProductViewPage> {
                   children: [
                     SizedBox(
                       width: width / 2.6,
-                      height: height / 4,
+                      height: height / 5,
                       child: Stack(
                           fit: StackFit.expand,
                           children: [
@@ -434,7 +434,7 @@ class _ProductViewPageState extends State<ProductViewPage> {
                       ),
                     ),
                     SizedBox(
-                      height: height/4,
+                      height: height/5,
                       child: Padding(
                         padding: const EdgeInsets.all(3.0),
                         child: Column(
@@ -452,8 +452,8 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                     color: Colors.grey),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 4.0),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 4.0),
                               child: Text(
                                 "RRP: 300.000",
                                 style: TextStyle(
@@ -469,9 +469,9 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                   Container(
                                     decoration: BoxDecoration(
                                         color: Colors.deepOrangeAccent[100],
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(5.0))),
-                                    child:  Padding(
+                                    child:  const Padding(
                                       padding: EdgeInsets.all(2.0),
                                       child: Text(
                                         "10%",
@@ -498,12 +498,13 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                 style: ElevatedButton.styleFrom(
                                   padding:EdgeInsets.zero,
                                  // elevation: 3,
+                                  backgroundColor: Colors.green,
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5.0)),
-                                  minimumSize: Size(100, 40), //////// HERE
+                                      borderRadius: BorderRadius.circular(3.0)),
+                                  minimumSize: Size(100, 35), //////// HERE
                                 ),
                                 onPressed: () {},
-                                child: Text('Hey bro'),
+                                child: Text('Add to cart'),
                               ),
                             )
                    ]
