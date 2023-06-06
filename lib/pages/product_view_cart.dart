@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 class ProductViewPage extends StatefulWidget {
   const ProductViewPage({Key? key}) : super(key: key);
@@ -10,6 +11,14 @@ class ProductViewPage extends StatefulWidget {
 
 int productQty = 01;
 bool wantBuy = false;
+String? selectedGenderValue;
+final List<String> genderItem = [
+  'Male',
+  'Female',
+  'Other',
+];
+bool obscureText = true;
+String text = '';
 
 class _ProductViewPageState extends State<ProductViewPage> {
   @override
@@ -24,7 +33,7 @@ class _ProductViewPageState extends State<ProductViewPage> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              SizedBox(
+              /* SizedBox(
                 //height: height / 2.5,
                 width: width / 2,
                 child: Card(
@@ -76,7 +85,8 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 padding: EdgeInsets.zero,
-                                                shape: RoundedRectangleBorder(
+                                                shape:
+                                                    const RoundedRectangleBorder(
                                                   borderRadius: BorderRadius.only(
                                                       topLeft:
                                                           Radius.circular(8),
@@ -339,7 +349,7 @@ class _ProductViewPageState extends State<ProductViewPage> {
                     ),
                   ),
                 ),
-              ),
+              ),*/
 
               /* Row(
                 children: [
@@ -397,125 +407,301 @@ class _ProductViewPageState extends State<ProductViewPage> {
                       width: width / 2.6,
                       height: height / 5,
                       child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            const ClipRRect(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10)),
-                              child: Image(
-                                image: AssetImage('assets/product/prod.jpg'),
-                                fit: BoxFit.fill,
+                        fit: StackFit.expand,
+                        children: [
+                          const ClipRRect(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                bottomLeft: Radius.circular(10)),
+                            child: Image(
+                              image: AssetImage('assets/product/prod.jpg'),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Positioned(
+                            top: 10,
+                            right: -5,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                shape: const CircleBorder(),
+                                // padding: EdgeInsets.all(0),
+                                backgroundColor: Colors.black87,
+                                // <-- Button color
+                                foregroundColor:
+                                    Colors.green, // <-- Splash color
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(3),
+                                child: Icon(
+                                  Icons.favorite_border,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                            Positioned(
-                              top: 10,
-                              right: -5,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  shape: const CircleBorder(),
-                                  // padding: EdgeInsets.all(0),
-                                  backgroundColor: Colors.black87,
-                                  // <-- Button color
-                                  foregroundColor:
-                                  Colors.green, // <-- Splash color
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(3),
-                                  child: Icon(
-                                    Icons.favorite_border,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                      ],
+                          ),
+                        ],
                       ),
                     ),
                     SizedBox(
-                      height: height/5,
+                      height: height / 5,
                       child: Padding(
                         padding: const EdgeInsets.all(3.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-
-                          children: [
-                            const Text("Apex Fresh Water King Prawns",style: TextStyle(fontWeight: FontWeight.w700),),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 4.0),
-                              child: Text(
-                                "SKU: 09U52A",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12,
-                                    color: Colors.grey),
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Apex Fresh Water King Prawns",
+                                style: TextStyle(fontWeight: FontWeight.w700),
                               ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 4.0),
-                              child: Text(
-                                "RRP: 300.000",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    color: Colors.green),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 4.0),
+                                child: Text(
+                                  "SKU: 09U52A",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12,
+                                      color: Colors.grey),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 6.0),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepOrangeAccent[100],
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(5.0))),
-                                    child:  const Padding(
-                                      padding: EdgeInsets.all(2.0),
-                                      child: Text(
-                                        "10%",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 4.0),
+                                child: Text(
+                                  "RRP: 300.000",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: Colors.green),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 6.0),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.deepOrangeAccent[100],
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(5.0))),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(2.0),
+                                        child: Text(
+                                          "10%",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(width: 10,),
-                                  Text(
-                                    "Rp 330.000",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.grey.shade400),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20.0),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  padding:EdgeInsets.zero,
-                                 // elevation: 3,
-                                  backgroundColor: Colors.green,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(3.0)),
-                                  minimumSize: Size(100, 35), //////// HERE
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "Rp 330.000",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.grey.shade400),
+                                    )
+                                  ],
                                 ),
-                                onPressed: () {},
-                                child: Text('Add to cart'),
                               ),
-                            )
-                   ]
-                        ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20.0),
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.zero,
+                                    // elevation: 3,
+                                    backgroundColor: Colors.green,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(3.0)),
+                                    minimumSize: Size(100, 35), //////// HERE
+                                  ),
+                                  onPressed: () {},
+                                  child: Text('Add to cart'),
+                                ),
+                              )
+                            ]),
                       ),
                     ),
                   ],
                 ),
               ),
+              SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                //style: TextStyle(color: Colors.grey),
+                //autofocus: true,
+                enableSuggestions: true,
+                decoration: InputDecoration(
+                  hintText: 'example@email.com',
+                  hintStyle: TextStyle(color: Colors.grey[400]),
+                  labelStyle: TextStyle(color: Colors.black),
+                  labelText: 'Username',
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(3.0),
+                child: Text(
+                  "Gender :",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(
+                height: 50,
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton2(
+                    isExpanded: true,
+                    autofocus: true,
+                    hint: const Text("Select Gender"),
+                    items: genderItem
+                        .map((item) => DropdownMenuItem<String>(
+                              //enabled: selectedGenderValue==null?false:true ,
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  // fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ))
+                        .toList(),
+                    value: selectedGenderValue,
+
+                    onChanged: (value) {
+                      if (mounted) {
+                        setState(() {
+                          selectedGenderValue = value as String;
+                        });
+                      }
+                    },
+                    icon: const Icon(
+                      Icons.keyboard_arrow_down_sharp,
+                    ),
+                    iconSize: 18,
+                    iconEnabledColor: Colors.black,
+                    //iconDisabledColor: Colors.grey,
+                    buttonHeight: height * 0.04,
+                    buttonWidth: width,
+                    buttonPadding: const EdgeInsets.only(left: 14, right: 14),
+                    buttonDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(3),
+                      /* border: Border(
+                           top: BorderSide(
+                               color: Colors.redAccent, width: 2
+                           ),
+                           bottom: BorderSide(
+                               color: Colors.purpleAccent, width: 5
+                           ),
+
+                           left: BorderSide(
+                               color: Colors.black, width: 10
+                           ),
+                           right: BorderSide(
+                               color: Colors.green, width: 4
+                           )
+                       ),*/
+                      // border: Border.all()
+                      color: Colors.white70,
+                    ),
+                    buttonElevation: 0,
+                    itemHeight: 40,
+                    // itemPadding: const EdgeInsets.only(left: 14, right: 14),
+                    dropdownMaxHeight: height,
+                    //dropdownWidth: width / 2,
+                    dropdownPadding: null,
+                    dropdownDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      //color: Colors.red, // drop down list color
+                    ),
+                    /*dropdownElevation: 5,
+                            scrollbarRadius: const Radius.circular(40),
+                            scrollbarThickness: 6,
+                            scrollbarAlwaysShow: true,
+                            offset: const Offset(-20, 0),*/
+                  ),
+                ),
+              ),
+              TextFormField(
+                obscureText: obscureText,
+                // onChanged: (){},
+                obscuringCharacter: "*",
+                decoration: InputDecoration(
+                    hintText: "Enter password",
+                    icon: const Icon(
+                      Icons.lock,
+                      color: Colors.cyan,
+                    ),
+                    suffixIcon: obscureText == true
+                        ? IconButton(
+                            onPressed: () {
+                              setState(() {
+                                obscureText = false;
+                              });
+                            },
+                            icon: Icon(Icons.clear),
+                          )
+                        : IconButton(
+                            onPressed: () {
+                              setState(() {
+                                obscureText = true;
+                              });
+                            },
+                            icon: Icon(Icons.remove_red_eye),
+                          )),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              CupertinoPageScaffold(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(text),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SearchTextField(
+                          fieldValue: (String value) {
+                            setState(() {
+                              text = value;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ));
+  }
+}
+
+class SearchTextField extends StatelessWidget {
+  const SearchTextField({
+    super.key,
+    required this.fieldValue,
+  });
+
+  final ValueChanged<String> fieldValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoSearchTextField(
+      onChanged: (String value) {
+        fieldValue('The text has changed to: $value');
+      },
+      onSubmitted: (String value) {
+        fieldValue('Submitted text: $value');
+      },
+    );
   }
 }
