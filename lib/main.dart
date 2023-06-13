@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:test_project/pages/gridview_map.dart';
+import 'package:test_project/pages/long_lat_from_addess.dart';
 import 'package:test_project/pages/map_page.dart';
 import 'package:test_project/pages/product_view_cart.dart';
 import 'package:test_project/pages/university_list.dart';
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:   map(),
+      home:   GeocodingExample(),
     );
   }
 }
